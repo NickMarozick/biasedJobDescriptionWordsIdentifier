@@ -40,7 +40,7 @@ def calculateBiasPercentages(biasTally):
     femalePercentString+=str(femalePercent)
     raciallyInsensitivePercentString= "Racially Insensitive Percentage: "
     raciallyInsensitivePercentString+=str(raciallyInsensitivePercent)
-    #return str(malePercent), str(femalePercent), str(raciallyInsensitivePercent)
+
     return malePercentString, femalePercentString, raciallyInsensitivePercentString
 
 
@@ -87,7 +87,3 @@ def examineTextInput(text):
         raciallyInsensitivePercent="Racially Insensitive Percentage: 0%"
 
         return bias, words, malePercent, femalePercent, raciallyInsensitivePercent
-
-
-    #if len(weightedBiasTally) > 0:
-        #calculateBiasPercentages(weightedBiasTally)
