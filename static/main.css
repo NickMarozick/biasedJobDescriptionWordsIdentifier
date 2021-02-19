@@ -1,0 +1,27 @@
+body {
+  background: #212529;
+}
+
+h1 {
+    color: navajowhite;
+    font-variant-caps: all-small-caps;
+    font-size: 46px;
+}
+
+h3 {
+  color: #18d26e;
+}
+
+textarea {
+  background-color: Wheat;
+  border-color: #18d26e;
+  box-shadow: 0 0 10px #18d26e;
+  border-radius: 12px;
+}
+
+button {
+  background-color: #18d26e;
+  color: black;
+  font-size: 16px;
+
+}
