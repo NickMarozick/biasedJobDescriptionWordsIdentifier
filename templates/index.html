@@ -24,6 +24,24 @@
     			});
     		</script>
 
+        <script type=text/javascript>
+          $(function() {
+            $('a#process_input').bind('click', function() {
+            $.getJSON('/background_process', {
+              jobInput: $('#jI').val(),
+            }, function(data) {
+            $("#bias").text(data.result['bias']);
+            $("#words").text(data.result['words']);
+            $("#malePercent").text(data.result['malePercent']);
+            $("#femalePercent").text(data.result['femalePercent']);
+            $("#raciallyInsensitivePercent").text(data.result['raciallyInsensitivePercent']);
+
+            });
+            return false;
+            });
+          });
+        </script>
+
 </head>
 <body>
 
@@ -41,7 +59,7 @@
         <div class='container_row'>
     			<form>
             <div align="center">
-              <textarea rows="30" cols="60" name=jobInput id=jI></textarea>
+              <textarea rows="30" cols="60" name=jobInput placeholder="Input job description here..." id=jI></textarea>
             </div>
 
           </form>
@@ -51,6 +69,37 @@
           <a href=# id=process_input><button class='btn btn-default'>Submit</button></a>
         </div>
 
+        <div class='container_row'>
+          <form role="form" method='POST' action='/' name="jobInputPOST" id="jobInputPOST">
+            <div align="center">
+              <textarea rows="30" cols="60" name=jobInput2 id=jI2 form="jobInputPOST" placeholder="Input job description here..."></textarea>
+            </div>
+
+            <div align="center">
+              <input type="submit" value="Submit" class="submitButton">
+            </div>
+
+          </form>
+        </div>
+
+
+        <div class="container_row2">
+          {% if results %}
+            <h3>Scanned Results</h3>
+            <div></div>
+            <br>
+            <div id="results" align="center">
+              <table class="table table-striped">
+
+                {% for result in results%}
+                  <tr>
+                    <td>{{ results[result] }}</td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          {% endif %}
+        </div>
 
         <div class='container_row2'>
 
@@ -62,10 +111,5 @@
 
         </div>
 
-        <span></span>
-
-        <div>
-
-        </div>
 
 </html>

@@ -4,9 +4,30 @@ import biasChecker
 
 app = Flask(__name__)
 
-@app.route('/')
+#@app.route('/')
+#def index():
+#    return render_template("index.html")
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    errors = []
+    results = {}
+    if request.method == 'POST':
+        print(request.form['jobInput2'])
+        try:
+            jobInput2 = request.form['jobInput2']
+            print(jobInput2)
+            #r= requests.get(jobInput2)
+            #print(r.text)
+            bias, words, malePercent, femalePercent, raciallyInsensitivePercent = biasChecker.examineTextInput(jobInput2)
+
+            results= {'bias': bias, 'words': words, 'malePercent': malePercent, 'femalePercent': femalePercent, 'raciallyInsensitivePercent': raciallyInsensitivePercent}
+            print(results)
+            
+        except:
+            errors.append("error")
+
+    return render_template("index.html", errors=errors, results=results)
 
 @app.errorhandler(404)
 def page_not_found(e):
